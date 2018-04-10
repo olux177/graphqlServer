@@ -1,0 +1,5 @@
+type Query {
+  users:[User]!
+  me: User
+  getUser(id:Int):User
+}

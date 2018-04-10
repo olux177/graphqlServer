@@ -1,0 +1,20 @@
+input PageInput {
+  name: String!,
+  desc: String,
+  url: String!
+}
+type Page {
+  id: ID!,
+  name: String!,
+  description: String,
+  url: String!
+}
+type Query {
+  pages:[Page!],
+  page(id:ID!):Page
+}
+type Mutation{
+  createPage(input : PageInput):Project
+  updatePage(input : PageInput):Project
+  deletePage(id : ID):String
+}

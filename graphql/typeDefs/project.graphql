@@ -1,0 +1,14 @@
+input MessageInput {
+  desc: String,
+  name: String
+}
+type Project {
+  desc: String,
+  name: String
+}
+type Query {
+  projects:[Project]
+}
+type Mutation{
+  createProject(input : MessageInput):Project
+}
