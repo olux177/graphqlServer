@@ -32,6 +32,10 @@ app.use('/graphql', bodyParser.json(), graphqlExpress(req =>
   })
 ));
 
-app.listen(PORT, () => {
-  console.log(`Go to http://localhost:${PORT}/playground to run queries!`);
-})
+// Start the server
+models.sequelize.sync({logging:false})
+  .then( ()=>
+    app.listen(PORT, () => {
+      console.log(`Running graphql server`);
+    })
+  )

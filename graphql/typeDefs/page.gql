@@ -1,6 +1,6 @@
 input PageInput {
   name: String!,
-  desc: String,
+  description: String,
   url: String!
 }
 type Page {
@@ -14,7 +14,8 @@ type Query {
   page(id:ID!):Page
 }
 type Mutation{
-  createPage(input : PageInput):Project
-  updatePage(input : PageInput):Project
+  # createPage(name: String!,url: String!,desc: String):Page
+  createPage(page : PageInput):Page
+  updatePage(id:ID!, page : PageInput):Page
   deletePage(id : ID):String
 }
