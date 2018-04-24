@@ -1,9 +1,10 @@
 import createPage1 from '../functions/page/mutation/create_page'
+import {requiresAuth,requiresAdmin} from '../../acl/permission'
 export default {
   Query: {
-    page: (parent, args, { models }) => {
+    page: requiresAdmin.createResolver((parent, args, {models}) => {
       return models.Page.findById(args.id)
-    },
+    }),
     pages:async (parent,args,{ models })=>{
       return await models.Page.findAll({ limit: 10 })
     }

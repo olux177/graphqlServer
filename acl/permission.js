@@ -1,3 +1,10 @@
+import Sequelize from 'sequelize';
+import Acl from 'acl';
+import AclSeq from 'acl-sequelize';
+import config from "../db/config.json"
+const dbconnection = new Sequelize(config.development);
+
+export const acl = new Acl(new AclSeq(dbconnection, { prefix: 'acl_' }));
 const createResolver = (resolver) => {
   const baseResolver = resolver;
   baseResolver.createResolver = (childResolver) => {
@@ -11,15 +18,17 @@ const createResolver = (resolver) => {
 };
 
 export const requiresAuth = createResolver((parent, args, context) => {
-  if (!context.user || !context.user.id) {
+  if (!context.user ) {
     throw new Error('Not authenticated');
   }
 });
 
 export const requiresAdmin = requiresAuth.createResolver(
   (parent, args, context) => {
-    if (!context.user.isAdmin) {
-      throw new Error('Requires admin access');
-    }
+    acl.isAllowed(context.user.id, 'blogs', null, function(err, res){
+      if(!res){
+        throw new Error('Not Authorised');
+      }
+    })
   },
 );

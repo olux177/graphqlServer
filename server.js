@@ -4,6 +4,7 @@ import {graphqlExpress} from 'apollo-server-express';
 import { makeExecutableSchema } from 'graphql-tools';
 import cors from 'cors';
 import models from "./db";
+import {Person} from "./acl/pre"
 
 import typeDefs from './graphql/typeDefs';
 import resolvers from './graphql/resolvers';
@@ -20,7 +21,12 @@ const SECRET = "secret"
 app.use(cors('*'));
 
 app.get('/', function (req, res) {
-  res.send('Hello World')
+  const person = new Person('Jane Doe')
+person.setName('Sarah Doe')
+person.greeting = 'Hello'
+person.getName() // Name: John Doe
+person.getGreetingCallback()('Jeff')
+  res.send(person.getName())
 })
 app.use('/graphql', bodyParser.json(), graphqlExpress(req =>
   ({

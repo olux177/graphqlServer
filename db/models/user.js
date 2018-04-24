@@ -1,5 +1,10 @@
-module.exports = (sequelize, DataTypes) => {
-  return sequelize.define("user", {
+import Sequelize from "sequelize"
+export default function (sequelize, DataTypes) {
+  return sequelize.define("user1", {
+    id: {
+      type: Sequelize.UUID,
+      primaryKey: true
+    },
     username: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -14,6 +19,5 @@ module.exports = (sequelize, DataTypes) => {
     firstname: DataTypes.STRING,
     lastname: DataTypes.STRING,
     password: DataTypes.STRING,
-    // description: DataTypes.TEXT
-  })
+  });
 }
