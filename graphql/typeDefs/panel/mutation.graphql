@@ -1,0 +1,36 @@
+input Contents {  
+  value: String!,
+  type: String
+}
+type Mutation {
+  createPanel(
+    name: String!,
+    description: String,
+    contents:[Contents]
+  ):Panel,
+  updatePanel(
+    id: ID!,
+    name: String,
+    description: String
+  ):Panel,
+  updatePanelContent(
+    id: ID!,
+    value: String,
+    style: String
+  ):PanelContent,
+  updatePanelContentType(
+    id: ID!,
+    name: String,
+    description: String
+  ):PanelType,
+  deletePanel(
+    id: ID!,
+    table: String,
+    confirm: String,
+  ):String,
+  deletePanelContent(
+    id: ID!,
+    table: String,
+    confirm: String,
+  ):String,
+}

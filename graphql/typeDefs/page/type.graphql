@@ -1,0 +1,14 @@
+type Page {
+  id: ID!,
+  name: String!,
+  url: String!,
+  description: String!
+}
+
+type PagePanel {
+  id: ID!,
+  name: String!,
+  url: String!,
+  description: String!,
+  panels: [Panel]
+}

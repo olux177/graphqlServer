@@ -1,21 +1,31 @@
-import createPage1 from '../functions/page/mutation/create_page'
 import {requiresAuth,requiresAdmin} from '../../acl/permission'
 export default {
   Query: {
     page: requiresAdmin.createResolver((parent, args, {models}) => {
       return models.Page.findById(args.id)
     }),
-    pages:async (parent,args,{ models })=>{
+    allPages:async (parent,args,{ models })=>{
       return await models.Page.findAll({ limit: 10 })
     }
   },
   Mutation:{
-    createPage :async (parent, args, {models})=>{
-      try {
-        return await models.Page.create(args.page)
+    createPage :async (parent, args, {models,Page})=>{
+      try {        
+        const {name,url,description}=args
+        const add = new Page(name,url,description)
+        return await add.create()
       }
       catch (e) {
         throw new Error("db error");
+      }
+    },
+    addPanel :async (parent, args, {models,Page})=>{
+      try{
+        const add = new Page();
+        return await add.addPanel(args);
+      }
+      catch(e){
+        throw new Error("db error")
       }
     },
     updatePage :async (parent, args, {models})=>{

@@ -1,0 +1,5 @@
+type Query {
+  allPages:[Page],
+  page(id:ID!):Page!,
+  pagePanel(id:ID!):[PagePanel],
+}

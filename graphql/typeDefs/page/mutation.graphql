@@ -1,0 +1,23 @@
+type Mutation{
+  createPage(
+    name: String,
+    url: String,
+    description: String
+  ):String,
+
+  addPanel(
+    pageID:ID!,
+    panelID:ID!
+  ):String,
+  
+  updatePage(
+    id:ID!,
+    name: String,
+    url: String,
+    description: String
+  ):Page,
+  
+ deletePage(
+    id: ID!
+  ):Page,
+}

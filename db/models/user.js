@@ -1,6 +1,6 @@
 import Sequelize from "sequelize"
 export default function (sequelize, DataTypes) {
-  return sequelize.define("user1", {
+  return sequelize.define("user", {
     id: {
       type: Sequelize.UUID,
       primaryKey: true

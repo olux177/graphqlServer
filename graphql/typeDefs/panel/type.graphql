@@ -1,0 +1,20 @@
+type Panel {
+  id: ID!,
+  name: String!,
+  description: String,
+  contents:[PanelContent] @relation(name: "PanelContent")
+}
+
+type PanelContent {
+  id: ID!,
+  value: String!,
+  style: String,
+  type: PanelType,
+  panel:Panel
+}
+
+type PanelType {
+  id: ID!,
+  name: String!,
+  desc: String
+}

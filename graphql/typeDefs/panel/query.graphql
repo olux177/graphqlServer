@@ -1,0 +1,4 @@
+type Query {
+  panel(name:String): Panel,
+  panelContent(id:ID): PanelContent
+}

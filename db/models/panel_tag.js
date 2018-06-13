@@ -1,9 +1,10 @@
 import Sequelize from "sequelize"
 export default function (sequelize, DataTypes) {
-  return sequelize.define("panel_tag", {
+  return sequelize.define("cms_panel_tag", {
     id: {
-      type: Sequelize.UUID,
-      primaryKey: true
+      type: DataTypes.UUID,
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV1,
     },
     name: {
       type: DataTypes.STRING,
